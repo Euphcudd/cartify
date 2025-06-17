@@ -1,3 +1,4 @@
+import 'package:cartify/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,7 +11,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, AppRoutes.mainScreen);
     });
   }
 
@@ -28,3 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+
+
+
+      // Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+      //   return TestConstantsScreen();
+      // }));
