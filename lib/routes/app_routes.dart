@@ -1,4 +1,4 @@
-import 'package:cartify/screens/customer/main_screen.dart';
+import 'package:cartify/screens/customer/home_screen.dart';
 import 'package:cartify/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 // import '../screens/customer/home_screen.dart';
@@ -39,7 +39,7 @@ class AppRoutes {
       case splash:
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case mainScreen:
-        return MaterialPageRoute(builder: (_) => const MainScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case customerHome:
       //   return MaterialPageRoute(builder: (_) => const HomeScreen());
       // case categoryProducts:
