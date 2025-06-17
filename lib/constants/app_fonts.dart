@@ -1,42 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'app_colors.dart';
+import 'app_sizes.dart';
 
 class AppFonts {
-  // Headings
-  static const TextStyle headline1 = TextStyle(
-    fontSize: 26,
+  static final TextStyle headline1 = GoogleFonts.poppins(
+    fontSize: AppSizes.fontXXL, // 24
     fontWeight: FontWeight.bold,
-    color: Color(0xFF212121),
+    color: AppColors.textPrimary,
   );
 
-  static const TextStyle headline2 = TextStyle(
-    fontSize: 22,
+  static final TextStyle headline2 = GoogleFonts.poppins(
+    fontSize: AppSizes.fontXL, // 20
     fontWeight: FontWeight.w600,
-    color: Color(0xFF212121),
+    color: AppColors.textPrimary,
   );
 
-  // Body Text
-  static const TextStyle bodyText = TextStyle(
-    fontSize: 16,
+  static final TextStyle bodyText = GoogleFonts.poppins(
+    fontSize: AppSizes.fontL, // 16
     fontWeight: FontWeight.normal,
-    color: Color(0xFF212121),
+    color: AppColors.textPrimary,
   );
 
-  static const TextStyle subText = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.normal,
-    color: Color(0xFFBDBDBD),
+  static final TextStyle subText = GoogleFonts.poppins(
+    fontSize: AppSizes.fontM, // 14
+    fontWeight: FontWeight.w400,
+    color: AppColors.textSecondary,
   );
 
-  // Button Text
-  static const TextStyle button = TextStyle(
-    fontSize: 16,
+  static final TextStyle button = GoogleFonts.poppins(
+    fontSize: AppSizes.fontL, // 16
     fontWeight: FontWeight.w600,
-    color: Colors.white,
+    color: AppColors.surface,
   );
 
-  // Input Field
-  static const TextStyle input = TextStyle(
-    fontSize: 16,
-    color: Color(0xFF212121),
+  static final TextStyle input = GoogleFonts.poppins(
+    fontSize: AppSizes.fontL, // 16
+    fontWeight: FontWeight.normal,
+    color: AppColors.textPrimary,
+  );
+
+  static final TextStyle caption = GoogleFonts.poppins(
+    fontSize: AppSizes.fontS, // 12
+    fontWeight: FontWeight.w400,
+    color: AppColors.textSecondary,
   );
 }

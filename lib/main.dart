@@ -1,4 +1,5 @@
 import 'package:cartify/constants/app_theme.dart';
+import 'package:cartify/test.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,8 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cartify',
-      theme: cartifyTheme,
-      home: YourHomeScreen(),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      home: TestConstantsScreen(),
     );
   }
 }

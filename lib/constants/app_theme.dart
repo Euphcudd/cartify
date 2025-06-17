@@ -1,53 +1,55 @@
+// lib/theme/app_theme.dart
 import 'package:flutter/material.dart';
-import 'app_colors.dart';
+import '../constants/app_colors.dart';
+import '../constants/app_fonts.dart';
 
-final ThemeData cartifyTheme = ThemeData(
-  brightness: Brightness.light,
-  primaryColor: AppColors.primary,
-  scaffoldBackgroundColor: AppColors.background,
-  appBarTheme: AppBarTheme(
-    backgroundColor: AppColors.surface,
-    elevation: 0,
-    iconTheme: IconThemeData(color: AppColors.textPrimary),
-    titleTextStyle: TextStyle(
-      color: AppColors.textPrimary,
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
+class AppTheme {
+  static final ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppColors.primary,
+      brightness: Brightness.light,
+      secondary: AppColors.secondary,
     ),
-  ),
-  textTheme: TextTheme(
-    headlineLarge: TextStyle(
-      color: AppColors.textPrimary,
-      fontWeight: FontWeight.bold,
+    scaffoldBackgroundColor: AppColors.background,
+    textTheme: TextTheme(
+      displayLarge: AppFonts.headline1,
+      displayMedium: AppFonts.headline2,
+      bodyLarge: AppFonts.bodyText,
+      bodyMedium: AppFonts.subText,
+      labelLarge: AppFonts.button,
+      titleMedium: AppFonts.input,
     ),
-    bodyMedium: TextStyle(color: AppColors.textPrimary),
-    bodySmall: TextStyle(color: AppColors.textSecondary),
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      foregroundColor: Colors.white,
-      backgroundColor: AppColors.primary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-      textStyle: TextStyle(fontWeight: FontWeight.bold),
+    cardTheme: const CardThemeData(
+      color: AppColors.surface,
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
     ),
-  ),
-  cardTheme: CardThemeData(
-    color: AppColors.surface,
-    elevation: 2,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-  ),
-  inputDecorationTheme: InputDecorationTheme(
-    filled: true,
-    fillColor: AppColors.surface,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(color: AppColors.textSecondary),
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.surface,
+      foregroundColor: AppColors.primary,
+      elevation: 0,
     ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(color: AppColors.primary, width: 2),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.surface,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        textStyle: AppFonts.button,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      ),
     ),
-    labelStyle: TextStyle(color: AppColors.textPrimary),
-  ),
-);
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.surface,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      hintStyle: AppFonts.subText,
+    ),
+  );
+}
