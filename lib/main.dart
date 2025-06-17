@@ -1,4 +1,6 @@
 import 'package:cartify/constants/app_theme.dart';
+import 'package:cartify/screens/splash_screen.dart';
+// ignore: unused_import
 import 'package:cartify/test.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Cartify',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: TestConstantsScreen(),
+      home: SplashScreen(),
     );
   }
 }

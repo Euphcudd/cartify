@@ -1,0 +1,13 @@
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo.bg.png
+  android: true
+  ios: true
+  web: true
+
+  android_logo_height: 250
+
+  android_12:
+    color: "#ffffff"
+    image: assets/logo.bg.png
+    android_12_logo_height: 250
