@@ -41,6 +41,11 @@ class Validators {
     return null;
   }
 
+  static String? validateAddress(String? value) {
+    if (value == null || value.trim().isEmpty) return 'Address is required';
+    return null;
+  }
+
   static String? validatePhone(String? value) {
     if (value == null || value.length != 10)
       return 'Enter 10-digit phone number';
