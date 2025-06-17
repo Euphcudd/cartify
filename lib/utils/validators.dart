@@ -46,4 +46,17 @@ class Validators {
       return 'Enter 10-digit phone number';
     return null;
   }
+
+  static String? validateUpiId(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Enter UPI ID';
+    }
+
+    final upiRegex = RegExp(r'^[\w.\-]{2,256}@[a-zA-Z]{2,64}$');
+    if (!upiRegex.hasMatch(value)) {
+      return 'Invalid UPI ID format';
+    }
+
+    return null;
+  }
 }
