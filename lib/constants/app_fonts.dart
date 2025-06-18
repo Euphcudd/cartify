@@ -4,6 +4,10 @@ import 'app_colors.dart';
 import 'app_sizes.dart';
 
 class AppFonts {
+  static const TextStyle bodyTextBold = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
   static final TextStyle headline1 = GoogleFonts.poppins(
     fontSize: AppSizes.fontXXL, // 24
     fontWeight: FontWeight.bold,

@@ -1,9 +1,9 @@
 class Plant {
   final String id;
   final String name;
-  final int price; // Optional: base price (or lowest price among varieties)
+  final int price; // Base or lowest price
   final String imageUrl;
-  final String categoryId; // links to the category like "Flowering"
+  final String categoryId;
   final List<PlantVariety> varieties;
 
   Plant({
@@ -14,6 +14,12 @@ class Plant {
     required this.categoryId,
     required this.varieties,
   });
+
+  /// Whether this plant has any varieties
+  bool get hasVarieties => varieties.isNotEmpty;
+
+  /// For plants without varieties, this is the stock status
+  bool get isAvailable => !hasVarieties || varieties.any((v) => v.isAvailable);
 
   factory Plant.fromMap(Map<String, dynamic> map, String docId) {
     return Plant(
@@ -43,13 +49,16 @@ class Plant {
 
 class PlantVariety {
   final String name; // e.g., "Red Rose"
-  final int price; // e.g., ₹99
-  final bool isAvailable; // true or false
+  final int price;
+  final bool isAvailable;
+  final String?
+  imageUrl; // Optional per-variety image (else fallback to plant image)
 
   PlantVariety({
     required this.name,
     required this.price,
     required this.isAvailable,
+    this.imageUrl,
   });
 
   factory PlantVariety.fromMap(Map<String, dynamic> map) {
@@ -57,10 +66,16 @@ class PlantVariety {
       name: map['name'],
       price: map['price'],
       isAvailable: map['isAvailable'],
+      imageUrl: map['imageUrl'], // nullable
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {'name': name, 'price': price, 'isAvailable': isAvailable};
+    return {
+      'name': name,
+      'price': price,
+      'isAvailable': isAvailable,
+      'imageUrl': imageUrl,
+    };
   }
 }

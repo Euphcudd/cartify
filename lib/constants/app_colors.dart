@@ -29,6 +29,8 @@ class AppColors {
   static const Color warning = Color(0xFFFF9500); // iOS Orange
   static const Color info = Color(0xFF5AC8FA); // iOS Light Blue
 
+  static const Color borderLight = Color(0xFFE0E0E0); // ✅ Add this
+
   // Shadow
   static const Color shadow = Color(0x1A000000); // 10% black
   // Gradient

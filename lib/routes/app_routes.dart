@@ -40,7 +40,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case mainScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
-      case customerHome:
+      // case customerHome:
       //   return MaterialPageRoute(builder: (_) => const HomeScreen());
       // case categoryProducts:
       //   return MaterialPageRoute(builder: (_) => const CategoryProductsScreen());

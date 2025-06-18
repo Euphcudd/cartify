@@ -1,7 +1,7 @@
-import 'package:cartify/constants/app_sizes.dart';
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_fonts.dart';
+import '../constants/app_sizes.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -12,18 +12,29 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       automaticallyImplyLeading: false,
+      backgroundColor: theme.appBarTheme.backgroundColor ?? AppColors.surface,
+      foregroundColor: theme.appBarTheme.foregroundColor ?? AppColors.primary,
+      elevation: theme.appBarTheme.elevation ?? AppSizes.elevationBase,
 
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-      foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
-      elevation: theme.appBarTheme.elevation ?? 0,
       title: Row(
         children: [
-          Image.asset('assets/icon.png', height: 32),
           Padding(
-            padding: const EdgeInsets.all(AppSizes.paddingS),
-            child: SizedBox(child: Image.asset('assets/txt.png', height: 70)),
+            padding: const EdgeInsets.symmetric(horizontal: AppSizes.paddingS),
+            child: Image.asset(
+              'assets/icon.png',
+              height: AppSizes.iconL, // 🌱 32.0
+            ),
           ),
-          const SizedBox(width: 8),
+          Padding(
+            padding: const EdgeInsets.only(left: AppSizes.paddingS),
+            child: Image.asset(
+              'assets/txt.png',
+              height:
+                  70, // Logo text height can be fixed or added to AppSizes if reused
+            ),
+          ),
+          const Spacer(),
+          // Add actions or icons here later
         ],
       ),
     );
