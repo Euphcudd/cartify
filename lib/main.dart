@@ -1,5 +1,8 @@
 import 'package:cartify/constants/app_theme.dart';
+import 'package:cartify/providers/category_Data_provider.dart';
+
 import 'package:cartify/providers/navigation_provider.dart';
+import 'package:cartify/providers/planta_provider.dart';
 import 'package:cartify/routes/app_routes.dart';
 import 'package:cartify/screens/splash_screen.dart';
 // ignore: unused_import
@@ -17,7 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => NavigationProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryDataProvider()),
+
+        ChangeNotifierProvider(create: (_) => PlantProvider()),
+      ],
       child: MaterialApp(
         title: 'Cartify',
         debugShowCheckedModeBanner: false,
