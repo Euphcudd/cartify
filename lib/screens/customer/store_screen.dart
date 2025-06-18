@@ -1,3 +1,4 @@
+import 'package:cartify/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class StoreScreen extends StatelessWidget {
@@ -5,6 +6,6 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar());
+    return Scaffold(appBar: CustomAppBar());
   }
 }
