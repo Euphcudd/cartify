@@ -1,5 +1,6 @@
 import 'package:cartify/constants/app_colors.dart';
 import 'package:cartify/constants/app_theme.dart';
+import 'package:cartify/providers/cart_provider.dart';
 import 'package:cartify/providers/category_Data_provider.dart';
 import 'package:cartify/providers/navigation_provider.dart';
 import 'package:cartify/providers/planta_provider.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
         ChangeNotifierProvider(create: (_) => CategoryDataProvider()),
         ChangeNotifierProvider(create: (_) => PlantProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: ScrollConfiguration(
         behavior: const CustomScrollBehavior(),

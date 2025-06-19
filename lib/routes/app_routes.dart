@@ -1,4 +1,5 @@
 import 'package:cartify/screens/customer/home_screen.dart';
+import 'package:cartify/screens/customer/storescreen/store_screen.dart';
 import 'package:cartify/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 // import '../screens/customer/home_screen.dart';
@@ -19,7 +20,7 @@ import 'package:flutter/material.dart';
 class AppRoutes {
   static const String splash = '/splash';
   static const String mainScreen = '/';
-  static const String customerHome = '/home';
+  static const String storeScreen = '/store';
   static const String categoryProducts = '/category-products';
   static const String productDetail = '/product-detail';
   static const String cart = '/cart';
@@ -40,8 +41,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case mainScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
-      // case customerHome:
-      //   return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case storeScreen:
+        return MaterialPageRoute(builder: (_) => const StoreScreen());
       // case categoryProducts:
       //   return MaterialPageRoute(builder: (_) => const CategoryProductsScreen());
       // case productDetail:

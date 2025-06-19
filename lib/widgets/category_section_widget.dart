@@ -1,3 +1,4 @@
+import 'package:cartify/screens/customer/cart%20screen/widgetn/addtocart_widget.dart';
 import 'package:cartify/widgets/cached_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -149,7 +150,7 @@ class CategorySectionVertical extends StatelessWidget {
                           height: buttonHeight,
                           child: ElevatedButton(
                             onPressed: () {
-                              // TODO: Add to cart logic
+                              addPlantToCart(context, plant);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.secondary,

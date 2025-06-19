@@ -1,3 +1,4 @@
+import 'package:cartify/screens/customer/cart%20screen/widgetn/addtocart_widget.dart';
 import 'package:cartify/widgets/cached_image_widget.dart';
 import 'package:cartify/widgets/swipeArrow_widget.dart';
 import 'package:flutter/material.dart';
@@ -470,7 +471,11 @@ class _PlantDetailsScreenState extends State<PlantDetailsScreen> {
                 height: AppSizes.buttonHeight,
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: Add to cart
+                    if (widget.variety != null) {
+                      addVarietyToCart(context, widget.plant, widget.variety!);
+                    } else {
+                      addPlantToCart(context, widget.plant);
+                    } //  Add to cart
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,

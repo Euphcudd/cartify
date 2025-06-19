@@ -1,5 +1,8 @@
 // screens/cart/cart_screen.dart
+import 'package:cartify/constants/app_sizes.dart';
 import 'package:cartify/providers/cart_provider.dart';
+import 'package:cartify/providers/navigation_provider.dart';
+import 'package:cartify/routes/app_routes.dart';
 import 'package:cartify/screens/customer/cart%20screen/widgetn/cart_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,9 +16,47 @@ class CartScreen extends StatelessWidget {
     final items = cart.items;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Your Cart'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Your Cart'),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+      ),
       body: items.isEmpty
-          ? const Center(child: Text('Your cart is empty.'))
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.shopping_cart_outlined,
+                    size: AppSizes.iconL,
+                    color: Colors.grey,
+                  ),
+                  const SizedBox(height: 8),
+                  Text('Your cart is empty', style: TextStyle(fontSize: 12)),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: 120, // Adjust width as needed
+                    height: 30, // Adjust height as needed
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<NavigationProvider>().updateIndex(0);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ), // inner padding
+                        textStyle: const TextStyle(
+                          fontSize: 14,
+                        ), // smaller text
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
+                      child: const Text('Shop Now'),
+                    ),
+                  ),
+                ],
+              ),
+            )
           : Column(
               children: [
                 Expanded(

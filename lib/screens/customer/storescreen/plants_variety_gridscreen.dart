@@ -163,6 +163,7 @@
 //   }
 // }
 
+import 'package:cartify/screens/customer/cart%20screen/widgetn/addtocart_widget.dart';
 import 'package:cartify/widgets/cached_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:cartify/models/plant_model.dart';
@@ -280,7 +281,11 @@ class PlantVarietyGridScreen extends StatelessWidget {
                                         width: double.infinity,
                                         child: ElevatedButton.icon(
                                           onPressed: () {
-                                            // TODO: Add to cart
+                                            addVarietyToCart(
+                                              context,
+                                              plant,
+                                              variety,
+                                            ); //add to cart
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: AppColors.primary,
