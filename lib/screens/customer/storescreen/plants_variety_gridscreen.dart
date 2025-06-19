@@ -169,7 +169,7 @@ import 'package:cartify/models/plant_model.dart';
 import 'package:cartify/constants/app_colors.dart';
 import 'package:cartify/constants/app_sizes.dart';
 import 'package:cartify/constants/app_fonts.dart';
-import 'package:cartify/screens/customer/plants_details_screen.dart';
+import 'package:cartify/screens/customer/storescreen/plants_details_screen.dart';
 
 class PlantVarietyGridScreen extends StatelessWidget {
   final Plant plant;

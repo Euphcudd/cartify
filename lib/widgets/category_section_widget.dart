@@ -7,8 +7,8 @@ import '../constants/app_sizes.dart';
 import '../models/category_model.dart';
 import '../models/plant_model.dart';
 import '../providers/planta_provider.dart';
-import '../screens/customer/plants_details_screen.dart';
-import '../screens/customer/plants_variety_gridscreen.dart';
+import '../screens/customer/storescreen/plants_details_screen.dart';
+import '../screens/customer/storescreen/plants_variety_gridscreen.dart';
 
 class CategorySectionVertical extends StatelessWidget {
   final Category category;

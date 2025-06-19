@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:cartify/constants/app_colors.dart';
 import 'package:cartify/constants/app_sizes.dart';
 import 'package:cartify/providers/navigation_provider.dart';
-import 'package:cartify/screens/customer/cart_screen.dart';
-import 'package:cartify/screens/customer/store_screen.dart';
+import 'package:cartify/screens/customer/cart%20screen/cart_screen.dart';
+import 'package:cartify/screens/customer/storescreen/store_screen.dart';
 import 'package:cartify/screens/customer/orders_screen.dart';
 
 class HomeScreen extends StatelessWidget {
