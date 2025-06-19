@@ -1,177 +1,98 @@
-// lib/mock_data.dart
-
 import 'package:cartify/models/category_model.dart';
 import 'package:cartify/models/plant_model.dart';
 
 final mockCategories = [
   Category(id: '1', name: '🌸 Flowering', icon: '🌸'),
   Category(id: '2', name: '🌿 Leafy', icon: '🌿'),
-  Category(id: '3', name: '🌵 Succulent', icon: '🌵'),
-  Category(id: '4', name: '🏠 Indoor', icon: '🏠'),
-  Category(id: '5', name: '☀️ Outdoor', icon: '☀️'),
-  Category(id: '6', name: '🪴 Herbs', icon: '🪴'),
-  Category(id: '7', name: '🌾 Bonsai', icon: '🌾'),
 ];
 
 final mockPlants = [
-  // 🌸 Flowering
+  // ✅ ROSE - with 2 varieties
   Plant(
     id: 'rose',
     name: 'Rose',
     price: 99,
-    imageUrl: '',
     categoryId: '1',
+    imageMain:
+        'https://images.unsplash.com/photo-1504196606672-aef5c9cefc92', // plant tile
     varieties: [
-      PlantVariety(name: 'Red Rose', price: 99, isAvailable: false),
-      PlantVariety(name: 'Pink Rose', price: 109, isAvailable: true),
+      PlantVariety(
+        name: 'Red Rose',
+        price: 99,
+        isAvailable: true,
+        image1: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb',
+        thumbnailImage: null, // fallback to image1
+        additionalImages: [
+          LabeledImage(
+            url: 'https://images.unsplash.com/photo-1504196606672-aef5c9cefc92',
+            label: 'Plant Size: Medium',
+          ),
+          LabeledImage(
+            url:
+                'https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?3',
+            label: 'Flower Color: Deep Red',
+          ),
+        ],
+      ),
+      PlantVariety(
+        name: 'Pink Rose',
+        price: 109,
+        isAvailable: true,
+        image1: 'https://images.unsplash.com/photo-1610011518770-82ac53b9c1c1',
+        thumbnailImage:
+            'https://images.unsplash.com/photo-1609381294307-f1bb0a2b6e88',
+        additionalImages: [
+          LabeledImage(
+            url:
+                'https://images.unsplash.com/photo-1609381294307-f1bb0a2b6e88?2',
+            label: 'Flower Color: Light Pink',
+          ),
+        ],
+      ),
     ],
   ),
+
+  // ✅ HIBISCUS - no variety, out of stock
   Plant(
     id: 'hibiscus',
     name: 'Hibiscus',
     price: 109,
-    imageUrl: '',
     categoryId: '1',
-    varieties: [],
+    imageMain: 'https://images.unsplash.com/photo-1615485929486-7e9a0ff5c040',
+    image1: 'https://images.unsplash.com/photo-1615485929486-7e9a0ff5c040',
+    isAvailable: false,
   ),
+
+  // ✅ MARIGOLD - no variety
   Plant(
+    isAvailable: false,
     id: 'marigold',
     name: 'Marigold',
     price: 59,
-    imageUrl: '',
     categoryId: '1',
-    varieties: [],
+    imageMain: 'https://images.unsplash.com/photo-1596788065905-9e3d4d4f4cf6',
+    image1: 'https://images.unsplash.com/photo-1596788065905-9e3d4d4f4cf6',
+    additionalImages: [],
   ),
 
-  // 🌿 Leafy
+  // ✅ MONEY PLANT - no variety
   Plant(
     id: 'moneyPlant',
     name: 'Money Plant',
     price: 49,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Money+Plant',
     categoryId: '2',
-    varieties: [],
+    imageMain: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb',
+    image1: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb',
   ),
+
+  // ✅ SNAKE PLANT - no variety
   Plant(
     id: 'snakePlant',
     name: 'Snake Plant',
     price: 89,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Snake+Plant',
     categoryId: '2',
-    varieties: [],
-  ),
-  Plant(
-    id: 'luckyBamboo',
-    name: 'Lucky Bamboo',
-    price: 79,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Lucky+Bamboo',
-    categoryId: '2',
-    varieties: [],
-  ),
-
-  // 🌵 Succulent
-  Plant(
-    id: 'aloeVera',
-    name: 'Aloe Vera',
-    price: 69,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Aloe+Vera',
-    categoryId: '3',
-    varieties: [],
-  ),
-  Plant(
-    id: 'jadePlant',
-    name: 'Jade Plant',
-    price: 99,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Jade+Plant',
-    categoryId: '3',
-    varieties: [],
-  ),
-  Plant(
-    id: 'echeveria',
-    name: 'Echeveria',
-    price: 89,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Echeveria',
-    categoryId: '3',
-    varieties: [],
-  ),
-
-  // 🏠 Indoor
-  Plant(
-    id: 'zzPlant',
-    name: 'ZZ Plant',
-    price: 149,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=ZZ+Plant',
-    categoryId: '4',
-    varieties: [],
-  ),
-  Plant(
-    id: 'arecaPalm',
-    name: 'Areca Palm',
-    price: 189,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Areca+Palm',
-    categoryId: '4',
-    varieties: [],
-  ),
-  Plant(
-    id: 'spiderPlant',
-    name: 'Spider Plant',
-    price: 69,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Spider+Plant',
-    categoryId: '4',
-    varieties: [],
-  ),
-
-  // ☀️ Outdoor
-  Plant(
-    id: 'sunflower',
-    name: 'Sunflower',
-    price: 49,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Sunflower',
-    categoryId: '5',
-    varieties: [],
-  ),
-  Plant(
-    id: 'bougainvillea',
-    name: 'Bougainvillea',
-    price: 89,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Bougainvillea',
-    categoryId: '5',
-    varieties: [],
-  ),
-
-  // 🪴 Herbs
-  Plant(
-    id: 'tulsi',
-    name: 'Tulsi',
-    price: 29,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Tulsi',
-    categoryId: '6',
-    varieties: [],
-  ),
-  Plant(
-    id: 'mint',
-    name: 'Mint',
-    price: 19,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Mint',
-    categoryId: '6',
-    varieties: [],
-  ),
-
-  // 🌾 Bonsai
-  Plant(
-    id: 'ficusBonsai',
-    name: 'Ficus Bonsai',
-    price: 249,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Ficus+Bonsai',
-    categoryId: '7',
-    varieties: [],
-  ),
-  Plant(
-    id: 'jadeBonsai',
-    name: 'Jade Bonsai',
-    price: 219,
-    imageUrl: 'https://via.placeholder.com/150x150.png?text=Jade+Bonsai',
-    categoryId: '7',
-    varieties: [],
+    imageMain: 'https://images.unsplash.com/photo-1583337130417-3346a1d3a46b',
+    image1: 'https://images.unsplash.com/photo-1583337130417-3346a1d3a46b',
+    additionalImages: [],
   ),
 ];

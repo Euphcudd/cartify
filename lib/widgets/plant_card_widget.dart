@@ -1,128 +1,114 @@
-import 'package:cartify/constants/app_colors.dart';
-import 'package:cartify/constants/app_fonts.dart';
-import 'package:cartify/screens/customer/plants_details_screen.dart';
-import 'package:cartify/screens/customer/plants_variety_gridscreen.dart';
+import 'package:cartify/widgets/cached_image_widget.dart';
 import 'package:flutter/material.dart';
 import '../models/plant_model.dart';
 
 class PlantCard extends StatelessWidget {
   final Plant plant;
+  final VoidCallback? onTap;
+  final VoidCallback? onAddToCart;
+  final bool showAddToCartButton;
 
-  const PlantCard({super.key, required this.plant});
+  const PlantCard({
+    super.key,
+    required this.plant,
+    this.onTap,
+    this.onAddToCart,
+    this.showAddToCartButton = true,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final bool showOutOfStock = !plant.hasVarieties && !plant.isAvailable;
+    // If plant has varieties, take the first one to show its price & thumbnail
+    final PlantVariety? firstVariety = plant.varieties.isNotEmpty
+        ? plant.varieties[0]
+        : null;
 
-    return InkWell(
-      onTap: () {
-        if (plant.hasVarieties) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => PlantVarietyGridScreen(plant: plant),
-            ),
-          );
-        } else if (plant.isAvailable) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => PlantDetailsScreen(plant: plant)),
-          );
-        }
-      },
+    final String imageUrl =
+        firstVariety?.thumbnailImage ?? firstVariety?.image1 ?? plant.imageMain;
+    final double price = firstVariety?.price ?? plant.price;
+    final bool isOutOfStock = plant.isOutOfStock;
+
+    return GestureDetector(
+      onTap: onTap,
       child: Stack(
         children: [
-          Container(
-            width: 160,
-            margin: const EdgeInsets.only(right: 12),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.surface,
-              border: Border.all(color: AppColors.border),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.shadow,
-                  blurRadius: 4,
-                  offset: const Offset(2, 2),
-                ),
-              ],
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
+            elevation: 4,
+            margin: const EdgeInsets.all(8),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // 🖼️ Plant Image
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      plant.imageUrl,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-
-                // 🌿 Plant Name
-                Text(
-                  plant.name,
-                  style: AppFonts.bodyText.copyWith(
-                    fontWeight: FontWeight.w600,
+                // 🌱 Image
+                CachedImage(
+                  imageUrl: imageUrl,
+                  height: 140,
+                  fit: BoxFit.cover,
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(16),
                   ),
                 ),
 
-                // 💰 Price
-                Text(
-                  '₹${plant.price}',
-                  style: AppFonts.subText.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-
-                const SizedBox(height: 6),
-
-                // 🛒 Add to Cart Button
-                if (!plant.hasVarieties && plant.isAvailable)
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // TODO: Add to cart logic
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        foregroundColor: AppColors.surface,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 6,
+                // 🪴 Name, 💰 Price, 🛒 Add to Cart
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        plant.name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        elevation: 0,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      child: Text("Add", style: AppFonts.button),
-                    ),
+                      const SizedBox(height: 4),
+                      Text(
+                        "₹${price.toStringAsFixed(0)}",
+                        style: TextStyle(
+                          color: Colors.green.shade700,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+
+                      if (showAddToCartButton && !isOutOfStock)
+                        ElevatedButton(
+                          onPressed: onAddToCart,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green.shade600,
+                            minimumSize: const Size.fromHeight(36),
+                          ),
+                          child: const Text("Add to Cart"),
+                        )
+                      else if (showAddToCartButton && isOutOfStock)
+                        const SizedBox(height: 36), // same space placeholder
+                    ],
                   ),
+                ),
               ],
             ),
           ),
 
-          // ❌ Out of Stock overlay
-          if (showOutOfStock)
+          // 🚫 Out of Stock Overlay
+          if (isOutOfStock)
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.surface.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.black.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 alignment: Alignment.center,
-                child: Text(
-                  "Out of Stock",
-                  style: AppFonts.bodyText.copyWith(
-                    color: AppColors.error,
+                child: const Text(
+                  'Out of Stock',
+                  style: TextStyle(
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
                 ),
               ),
