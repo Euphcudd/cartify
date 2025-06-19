@@ -116,27 +116,65 @@ class CategorySectionVertical extends StatelessWidget {
                       const SizedBox(height: AppSizes.spacingS),
 
                       // Add to Cart (only for plants with no varieties & in stock)
-                      if (!hasVarieties && !isOutOfStock)
-                        SizedBox(
-                          height: 36,
+                    ],
+                  ),
+                ),
+                if (!hasVarieties && !isOutOfStock)
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Builder(
+                      builder: (context) {
+                        double screenWidth = MediaQuery.of(context).size.width;
+
+                        // Define width & height based on screen size
+                        double buttonWidth;
+                        double buttonHeight;
+
+                        if (screenWidth < 600) {
+                          // Mobile
+                          buttonWidth = 90;
+                          buttonHeight = 36;
+                        } else if (screenWidth < 1024) {
+                          // Tablet
+                          buttonWidth = 140;
+                          buttonHeight = 42;
+                        } else {
+                          // Web/Desktop
+                          buttonWidth = 120;
+                          buttonHeight = 48;
+                        }
+
+                        return SizedBox(
+                          width: buttonWidth,
+                          height: buttonHeight,
                           child: ElevatedButton(
                             onPressed: () {
                               // TODO: Add to cart logic
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primary,
+                              backgroundColor: AppColors.secondary,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                              ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
                                   AppSizes.radiusS,
                                 ),
                               ),
                             ),
-                            child: const Text("Add to Cart"),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text("Add"),
+                                SizedBox(width: 6),
+                                Icon(Icons.add_shopping_cart, size: 18),
+                              ],
+                            ),
                           ),
-                        ),
-                    ],
+                        );
+                      },
+                    ),
                   ),
-                ),
               ],
             ),
           ),
